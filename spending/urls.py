@@ -1,0 +1,19 @@
+
+
+
+from django.urls import path
+from spending.views import SignUpViews
+from spending.views import GetMeView
+from spending.views import ExpenseListCreateView
+from spending.views import ExpenseRetriveUpdateDeleteView
+
+
+urlpatterns = [
+    path("register/",SignUpViews.as_view()),
+    path("me/",GetMeView.as_view()),
+    path("expenses/",ExpenseListCreateView.as_view()),
+    path("expenses/<int:pk>/",ExpenseRetriveUpdateDeleteView.as_view()),
+    
+    
+    
+]

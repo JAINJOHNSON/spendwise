@@ -1,0 +1,77 @@
+
+
+###
+POST http://127.0.0.1:8000/v1/spending/register/
+Content-Type: application/json
+
+{
+    "username":"django1",
+    "email":"django1@gmail.com",
+    "password":"password@123"
+}
+
+
+#-------------------------how to get user details who send request------------
+
+###
+GET http://127.0.0.1:8000/v1/spending/me/
+Accept: application/json
+Authorization: Basic django1:password@123
+
+#---------------------------------------------------------
+
+#===================Expenses Endpoints =================
+
+#----------------------------------------------------------------
+
+# api call for listing all expenses
+###
+GET  http://127.0.0.1:8000/v1/spending/expenses/
+Accept: application/json
+Authorization: Basic django1:password@123
+
+#-----------------------------------------------------------------
+# Api call for adding expense 
+###
+POST http://127.0.0.1:8000/v1/spending/expenses/
+Content-Type: application/json
+Authorization: Basic django1:password@123
+
+{
+    "title":"Food",
+    "amount":3100,
+    "category":"BILLS",
+    "payment_method":"upi"
+}
+
+
+#Api call for getting using id --------------------------------------------
+###
+GET  http://127.0.0.1:8000/v1/spending/expenses/1/
+Accept: application/json
+Authorization: Basic django1:password@123
+
+#--------------------------------------------------
+#api call for updating ---------------------
+###
+PUT   http://127.0.0.1:8000/v1/spending/expenses/1/
+Content-Type:  application/json
+Authorization: Basic django1:password@123
+
+{
+  "id": 1,
+  "title": "Medicine1",
+  "amount": "200",
+  "category": "HEALTH",
+  "priority": "need",
+  "payment_method": "upi",
+  "created_at": "2026-10-11T20:37:21.092570Z",
+  "updated_at": "2026-10-11T20:37:21.092596Z",
+  "owner": 1
+}
+
+#api call for delete expense ---------------------------------------
+###
+DELETE   http://127.0.0.1:8000/v1/spending/expenses/4/
+Accept: application/json
+Authorization: Basic django1:password@123
