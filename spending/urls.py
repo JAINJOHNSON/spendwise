@@ -9,6 +9,7 @@ from spending.views import ExpenseRetriveUpdateDeleteView
 
 from rest_framework.authtoken.views import ObtainAuthToken
 
+from spending.views import ExpenseSummaryView
 
 urlpatterns = [
     path("register/",SignUpViews.as_view()),
@@ -17,6 +18,8 @@ urlpatterns = [
     path("expenses/<int:pk>/",ExpenseRetriveUpdateDeleteView.as_view()),
 
     path("token/",ObtainAuthToken.as_view()),
+
+    path("expenses/summary/",ExpenseSummaryView.as_view())
     
     
 ]

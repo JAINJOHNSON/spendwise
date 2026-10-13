@@ -56,9 +56,9 @@ Authorization: Token 69e3f7f5a5299d0b903afb092e6edc2315e2cdf6
 
 
 {
-    "title":"Food",
-    "amount":3100,
-    "category":"BILLS",
+    "title":"Lunch",
+    "amount":500,
+    "category":"FOOD",
     "payment_method":"upi"
 }
 
@@ -97,4 +97,13 @@ Authorization: Token 69e3f7f5a5299d0b903afb092e6edc2315e2cdf6
 DELETE   http://127.0.0.1:8000/v1/spending/expenses/1/
 Accept: application/json
 # Authorization: Basic rest:password@123
+Authorization: Token 69e3f7f5a5299d0b903afb092e6edc2315e2cdf6
+
+
+
+#-----------------SUMMARY VIEW----------------
+
+###
+GET http://127.0.0.1:8000/v1/spending/expenses/summary/
+Accept: application/json
 Authorization: Token 69e3f7f5a5299d0b903afb092e6edc2315e2cdf6
