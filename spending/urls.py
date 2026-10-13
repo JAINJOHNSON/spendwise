@@ -7,13 +7,16 @@ from spending.views import GetMeView
 from spending.views import ExpenseListCreateView
 from spending.views import ExpenseRetriveUpdateDeleteView
 
+from rest_framework.authtoken.views import ObtainAuthToken
+
 
 urlpatterns = [
     path("register/",SignUpViews.as_view()),
     path("me/",GetMeView.as_view()),
     path("expenses/",ExpenseListCreateView.as_view()),
     path("expenses/<int:pk>/",ExpenseRetriveUpdateDeleteView.as_view()),
-    
+
+    path("token/",ObtainAuthToken.as_view()),
     
     
 ]

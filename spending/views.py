@@ -11,6 +11,9 @@ from spending.models import Expense
 
 from django.contrib.auth.models import User
 
+from spending.permission import IsOwner
+
+
 
 
 class SignUpViews(APIView):
@@ -31,7 +34,8 @@ class SignUpViews(APIView):
 
 class GetMeView(APIView):
     
-    authentication_classes = [authentication.BasicAuthentication]
+    # authentication_classes = [authentication.BasicAuthentication]
+    authentication_classes = [authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self,request):
@@ -46,7 +50,9 @@ class GetMeView(APIView):
 
 
 class ExpenseListCreateView(APIView):
-    authentication_classes = [authentication.BasicAuthentication]
+    # authentication_classes = [authentication.BasicAuthentication]
+    authentication_classes = [authentication.TokenAuthentication]
+
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self,request):
@@ -72,11 +78,15 @@ class ExpenseListCreateView(APIView):
 
 
 class ExpenseRetriveUpdateDeleteView(APIView):
-    authentication_classes = [authentication.BasicAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
+    # authentication_classes = [authentication.BasicAuthentication]
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [IsOwner]
 
     def get(self,request,pk):
         instance = Expense.objects.get(id=pk)  # also can use "get_object_or_404" 
+
+        self.check_object_permissions(request,instance)    #To check if the user have permission
+
         serializer_instance = ExpenseSerializer(instance)
         return Response(data=serializer_instance.data)
 
@@ -84,6 +94,9 @@ class ExpenseRetriveUpdateDeleteView(APIView):
         
         instance = get_object_or_404(Expense,id=pk) # helps to run without error
         form_data = request.data
+
+        self.check_object_permissions(request,instance)    #To check if the user have permission
+                
         serializer_instance = ExpenseSerializer(data=form_data,instance=instance)  # instance given so that program understands its instance is updated
         
         if serializer_instance.is_valid():
