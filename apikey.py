@@ -6,7 +6,7 @@ api_key = "A"
 
 #step1: authenticate
 
-client = genai.Client(api_key=api_key)  #authentication 
+client = genai.Client(api_key)  #authentication 
 
 prompt = "what is ai agent in simple words"
 
