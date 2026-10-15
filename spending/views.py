@@ -156,6 +156,31 @@ class ExpenseSummaryView(APIView):
 
         return Response(data=response_data)
 
+from spending.ai_services import getbudgetplan
+
+class BudgetPlanView(APIView):
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self,request):
+
+        response_data = {"monthly_total":0}
+
+        cur_month = datetime.now().month
+        cur_year = datetime.now().year
+
+        monthly_transaction = Expense.objects.filter(owner = request.user,created_at__month = cur_month,created_at__year = cur_year)
+
+        if monthly_transaction:
+
+            monthly_total = monthly_transaction.values("amount").aggregate(total = Sum("amount")).get("total")
+            category_summary = monthly_transaction.values("category").annotate(total = Sum("amount"))
+
+            response_data["monthly_total"]=monthly_total
+            response_data["category_summary"]=category_summary 
+
+            getbudgetplan(response_data)
 
 
+        return Response(data=response_data)
 

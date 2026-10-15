@@ -56,9 +56,9 @@ Authorization: Token 69e3f7f5a5299d0b903afb092e6edc2315e2cdf6
 
 
 {
-    "title":"Lunch",
-    "amount":500,
-    "category":"FOOD",
+    "title":"OOTY",
+    "amount":100,
+    "category":"TRAVEL",
     "payment_method":"upi"
 }
 
@@ -107,3 +107,12 @@ Authorization: Token 69e3f7f5a5299d0b903afb092e6edc2315e2cdf6
 GET http://127.0.0.1:8000/v1/spending/expenses/summary/
 Accept: application/json
 Authorization: Token 69e3f7f5a5299d0b903afb092e6edc2315e2cdf6
+
+
+#-----------------BUDGET Monthly  VIEW----------------
+
+###
+GET http://127.0.0.1:8000/v1/spending/expenses/monthlysummary/
+Accept: application/json
+Authorization: Token 69e3f7f5a5299d0b903afb092e6edc2315e2cdf6
+
