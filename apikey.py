@@ -2,7 +2,7 @@
 
 from google import genai
 
-api_key = "AQ.Ab8RN6JNnNmMQTXJ6wDYD_XCif36cqdDVNwouPVypt_qUfvkjQ"
+api_key = "A"
 
 #step1: authenticate
 
