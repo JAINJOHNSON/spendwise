@@ -2,11 +2,11 @@
 
 from google import genai
 
-api_key = "A"
+app_assistant_key = "A"
 
 #step1: authenticate
 
-client = genai.Client(api_key)  #authentication 
+client = genai.Client(app_assistant_key=app_assistant_key)  #authentication 
 
 prompt = "what is ai agent in simple words"
 
